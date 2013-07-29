@@ -1,0 +1,17 @@
+{
+  "name": "test1",
+  "description": "brief description of your app widget",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git"
+  },
+  "main": "js/app.js",
+  "devDependencies": {
+    "grunt-contrib-requirejs": "~0.4.0",
+    "grunt-contrib-less": "~0.5.1",
+    "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.4.2",
+    "grunt-linter": "~0.3.2",
+    "grunt-contrib-jst": "~0.5.1"
+  }
+}

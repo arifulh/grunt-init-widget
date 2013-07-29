@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+
+        body, h1 {
+            padding: 0;
+            margin: 0;
+            color: white;
+        }
+
+        .widget-container {
+            width: 100%;
+            max-width: 345px;
+            height: 300px; /* The extra height will be cropped */
+            /* centre the background inside the widget */
+            /* background: #eee url(my-background.jpg) no-repeat 50% 0; */
+            background-color: #ff0000;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="widget-container">
+    <h1>y</h1>
+
+</div>
+
+<script src="//zeebox.com/openbox/api/3.1/openbox.with.jquery.js"></script>
+<script>
+    openbox.setWidgetDetails({
+        name: "y",
+        version: "0.1.0",
+        partner: "zeebox", // whoever commissioned the app
+        supplier: "com.zeebox.uk" // whoever built the app
+    });
+    openbox.ready(function(params) {
+        var appUrl;
+        //hack to open in old android version).
+        var doAndroidHack;
+    
+
+        var init = function() {
+            appUrl = 'app?dev=on';
+            doAndroidHack = openbox.platformIsAndroid() && !versionGTE('3.0.1') && openbox.supports.launchExternalURL;
+            if (! openbox.supports.managedLightbox || openbox.platformIsAndroid()) {
+                appUrl += '&' + openbox.paramify({
+                    'zeebox-id': params.zeeboxId || '',
+                    'episode-id': params.episodeId || '',
+                    'broadcast-event-id': params.broadcastEventId || '',
+                    'tvc': params.brand || '',
+                    dev: params.dev || ''
+                });
+            }
+            $('.widget-container').click(launchComp);
+        }
+
+        function launchComp() {
+            if (doAndroidHack) {
+                openbox.launchExternalURL(appUrl);
+                return;
+            }
+            openbox.launchLightbox({
+                url: appUrl,
+                width: 880,
+                height: 640,
+                type: 'privileged'
+            });
+        }
+
+        function versionGTE(v) {
+            var i=0;
+            var requiredVersion;
+            var myVersion = openbox.params.version;
+
+            if( !myVersion ) {
+                return false
+            }
+
+            myVersion = (''+myVersion).split('.');
+            requiredVersion = (''+v).split('.');
+
+            for(; i < requiredVersion.length ; i++){
+
+                if ( myVersion[i] === undefined || myVersion[i] === null ) {
+                    myVersion[i] = 0;
+                }
+                if( parseInt(myVersion[i],10) > parseInt(requiredVersion[i],10) ) return true;
+                if( parseInt(myVersion[i],10) < parseInt(requiredVersion[i],10) ) return false;
+            }
+
+            return true;
+        };
+
+            init();
+
+    });
+</script>
+</body>
+</html>

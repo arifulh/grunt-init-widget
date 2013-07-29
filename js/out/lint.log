@@ -1,0 +1,15 @@
+FAIL	js/models/model.js(5)
+js/models/model.js:5:5	Expected ']' to match '[' from line 1 and instead saw 'openbox'.
+js/models/model.js:7:1	Expected ')' and instead saw ']'.
+js/models/model.js:7:13	Missing name in function declaration.
+js/models/model.js:15:2	Expected an identifier and instead saw ')'.
+js/models/model.js:15:2	Expected an assignment or function call and instead saw an expression.
+FAIL	js/views/view.js(5)
+js/views/view.js:5:5	Expected ']' to match '[' from line 1 and instead saw 'openbox'.
+js/views/view.js:7:1	Expected ')' and instead saw ']'.
+js/views/view.js:7:13	Missing name in function declaration.
+js/views/view.js:15:2	Expected an identifier and instead saw ')'.
+js/views/view.js:15:2	Expected an assignment or function call and instead saw an expression.
+
+# JSLint failed, 10 violations in 2 files.  5 files scanned.
+
